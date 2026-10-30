@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WEB CRAFT — премиальная веб-студия</title>
+<style>
+:root{color-scheme:dark;--bg:#07080c;--bg2:#0e1016;--tx:#f4f5f8;--mut:#8b90a0;--ln:rgba(255,255,255,.09);--ac:#5b6cff;--ac2:#a45bff;--gl:rgba(255,255,255,.04);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:80px;height:auto}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.03em;line-height:1.05}
+h2{font-size:clamp(32px,5vw,58px)}
+.eyebrow{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--ac);margin-bottom:18px;display:block}
+.grad{background:linear-gradient(100deg,#7d8bff,var(--ac2) 60%,#e08bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+section{padding:120px 0;position:relative}
+.lead{color:var(--mut);max-width:560px;margin:18px 0 0;font-size:18px}
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:.3s}
+header.s{background:rgba(7,8,12,.7);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--ln)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-weight:800;letter-spacing:.08em;display:flex;align-items:center;gap:10px}
+.logo i{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:block;box-shadow:0 0 24px rgba(91,108,255,.6)}
+.links{display:flex;gap:34px;color:var(--mut);font-size:14px}
+.links a:hover{color:var(--tx)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font:600 15px/1 inherit;font-family:inherit;border:1px solid var(--ln);background:var(--gl);color:var(--tx);cursor:pointer;transition:.3s}
+.btn:hover{border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+.btn.p{background:linear-gradient(120deg,var(--ac),var(--ac2));border:0;box-shadow:0 10px 40px -8px rgba(110,90,255,.7)}
+.btn.p:hover{box-shadow:0 14px 50px -6px rgba(140,90,255,.9)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:11px;right:11px;height:2px;background:#fff;transition:.3s}
+.burger span:first-child{top:18px}.burger span:last-child{top:25px}
+.burger.o span:first-child{top:21px;transform:rotate(45deg)}.burger.o span:last-child{top:21px;transform:rotate(-45deg)}
+.mob{position:fixed;inset:0;background:rgba(7,8,12,.96);backdrop-filter:blur(20px);z-index:40;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:0 32px;opacity:0;pointer-events:none;transition:.35s}
+.mob.o{opacity:1;pointer-events:auto}
+.mob a{font-size:34px;font-weight:700;letter-spacing:-.02em}
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.o1{width:520px;height:520px;background:#3d4dff;opacity:.28;top:-120px;right:-80px}
+.o2{width:420px;height:420px;background:#8a3dff;opacity:.2;bottom:-100px;left:-100px}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--ln) 1px,transparent 1px),linear-gradient(90deg,var(--ln) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,#000,transparent);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,#000,transparent);opacity:.5}
+.hg{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative}
+.hero h1{font-size:clamp(40px,6.4vw,84px)}
+.hero p{color:var(--mut);font-size:19px;max-width:520px;margin:26px 0 38px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.stats{display:flex;gap:40px;margin-top:56px;color:var(--mut);font-size:13px}
+.stats b{display:block;color:var(--tx);font-size:26px;letter-spacing:-.02em}
+.scene{position:relative;height:520px;perspective:1200px}
+.stage{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .2s ease-out}
+.win{position:absolute;border-radius:18px;border:1px solid var(--ln);background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.02));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 40px 80px -20px rgba(0,0,0,.8);padding:14px;overflow:hidden}
+.win .d{display:flex;gap:6px;margin-bottom:12px}.win .d i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
+.bar{height:8px;border-radius:4px;background:rgba(255,255,255,.12);margin:8px 0}
+.w1{width:330px;height:240px;left:4%;top:6%;transform:translateZ(40px) rotateY(-14deg) rotateX(6deg);animation:fl 7s ease-in-out infinite}
+.w2{width:260px;height:200px;right:0;top:34%;transform:translateZ(120px) rotateY(-14deg) rotateX(6deg);animation:fl 8s ease-in-out -2s infinite}
+.w3{width:210px;height:150px;left:14%;bottom:2%;transform:translateZ(80px) rotateY(-14deg) rotateX(6deg);animation:fl 9s ease-in-out -4s infinite}
+.hb{height:70px;border-radius:10px;background:linear-gradient(120deg,var(--ac),var(--ac2));margin-bottom:10px;opacity:.9}
+.ring{position:absolute;width:150px;height:150px;border-radius:50%;border:18px solid transparent;border-top-color:var(--ac2);border-right-color:var(--ac);right:12%;top:2%;transform:translateZ(160px);animation:sp 12s linear infinite;filter:drop-shadow(0 0 20px rgba(120,100,255,.6))}
+.cube{position:absolute;width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#fff,#9aa3ff);left:2%;bottom:36%;transform:translateZ(180px) rotate(20deg);animation:fl 6s ease-in-out infinite;box-shadow:0 20px 50px rgba(120,120,255,.5)}
+@keyframes fl{50%{translate:0 -16px}}@keyframes sp{to{rotate:360deg}}
+/* services */
+.sg{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:60px}
+.card{grid-column:span 2;position:relative;padding:32px;border-radius:24px;border:1px solid var(--ln);background:var(--bg2);overflow:hidden;transition:.4s}
+.card:nth-child(1),.card:nth-child(4){grid-column:span 3}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(110,100,255,.22),transparent 60%);opacity:0;transition:.4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(130,120,255,.5)}.card:hover::before{opacity:1}
+.ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--gl);border:1px solid var(--ln);margin-bottom:56px;position:relative}
+.ic svg{width:24px;height:24px;stroke:#aab2ff;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:22px;letter-spacing:-.02em;position:relative}.card p{color:var(--mut);margin:10px 0 0;font-size:15px;position:relative}
+.num{position:absolute;top:30px;right:30px;font:12px ui-monospace,monospace;color:var(--mut)}
+/* work */
+.pg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:60px}
+.pj{border-radius:26px;border:1px solid var(--ln);background:var(--bg2);overflow:hidden;transition:.4s}
+.pj:nth-child(3n+1){grid-column:span 2}
+.pj:hover{transform:translateY(-6px);border-color:rgba(130,120,255,.5)}
+.pv{height:300px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pj:nth-child(3n+1) .pv{height:380px}
+.pv .win{position:relative;width:78%;height:78%;top:12%;transition:.6s;border-radius:14px 14px 0 0}
+.pj:hover .pv .win{transform:translateY(-12px) scale(1.03)}
+.pb{padding:26px 28px 28px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.tag{font:600 11px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
+.pb h3{font-size:24px;margin:10px 0 6px;letter-spacing:-.02em}.pb p{margin:0;color:var(--mut);font-size:15px}
+.note{margin-top:28px;color:var(--mut);font-size:13px;border:1px dashed var(--ln);border-radius:14px;padding:14px 18px}
+/* why */
+.wg{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;border:1px solid var(--ln);border-radius:28px;overflow:hidden}
+.wi{padding:38px 32px;border-right:1px solid var(--ln);border-bottom:1px solid var(--ln);transition:.4s;position:relative}
+.wi:nth-child(3n){border-right:0}.wi:nth-child(n+4){border-bottom:0}
+.wi:hover{background:linear-gradient(160deg,rgba(91,108,255,.14),transparent)}
+.wi b{font:500 13px ui-monospace,monospace;color:var(--ac2)}
+.wi h3{font-size:21px;margin:34px 0 8px;letter-spacing:-.02em}.wi p{color:var(--mut);margin:0;font-size:15px}
+/* process */
+.tl{position:relative;margin-top:70px;display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.tl::before{content:"";position:absolute;top:11px;left:0;right:0;height:1px;background:var(--ln)}
+.tl::after{content:"";position:absolute;top:11px;left:0;height:1px;width:var(--p,0%);background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.st{position:relative;padding-top:44px}
+.st::before{content:"";position:absolute;top:4px;left:0;width:15px;height:15px;border-radius:50%;background:var(--bg);border:2px solid var(--ac);box-shadow:0 0 16px var(--ac)}
+.st b{font:500 13px ui-monospace,monospace;color:var(--mut)}.st h3{font-size:18px;margin-top:8px;letter-spacing:-.01em;line-height:1.25}
+/* form */
+.fw{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+form{padding:36px;border-radius:28px;border:1px solid var(--ln);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.015));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:grid;gap:16px;position:relative;overflow:hidden}
+label{font-size:13px;color:var(--mut);display:grid;gap:8px}
+input,select,textarea{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--ln);border-radius:14px;padding:15px 16px;color:var(--tx);font:inherit;outline:0;transition:.25s}
+select option{background:#14161d}
+input:focus,select:focus,textarea:focus{border-color:var(--ac);box-shadow:0 0 0 4px rgba(91,108,255,.18)}
+textarea{min-height:110px;resize:vertical}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sp{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:none}
+form.l .sp{display:block}form.l button{pointer-events:none;opacity:.8}
+.ok{position:absolute;inset:0;background:var(--bg2);display:grid;place-content:center;text-align:center;gap:14px;padding:30px;opacity:0;pointer-events:none;transition:.5s}
+.ok.s{opacity:1;pointer-events:auto}
+.ok svg{width:64px;height:64px;margin:auto;stroke:#7d8bff;fill:none;stroke-width:2.5;stroke-dasharray:60;stroke-dashoffset:60}.ok.s svg{animation:dr .8s .2s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.err{color:#ff8a8a;font-size:13px;min-height:1em}
+/* footer */
+footer{border-top:1px solid var(--ln);padding:70px 0 40px;overflow:hidden}
+.big{font-size:clamp(60px,15vw,210px);font-weight:800;letter-spacing:-.05em;line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);margin:50px 0 30px;text-align:center}
+.fr{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--mut);font-size:14px}
+.fl{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:45;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 10px 36px rgba(110,90,255,.6);transition:.3s}
+.fl:hover{transform:scale(1.1)}.fl svg{width:26px;height:26px;fill:#fff}
+/* cursor, reveal */
+.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(255,255,255,.5);border-radius:50%;pointer-events:none;z-index:99;transition:width .25s,height .25s,margin .25s,background .25s;mix-blend-mode:difference;display:none}
+.cur.h{width:64px;height:64px;margin:-32px 0 0 -32px;background:#fff}
+@media(hover:hover) and (pointer:fine){.cur{display:block}}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.v{opacity:1;transform:none}
+@media(max-width:960px){
+.links,.hd .btn{display:none}.burger{display:block}
+.hg,.fw{grid-template-columns:1fr}.scene{height:400px}
+.sg{grid-template-columns:1fr 1fr}.card,.card:nth-child(1),.card:nth-child(4){grid-column:span 1}
+.wg{grid-template-columns:1fr 1fr}.wi:nth-child(3n){border-right:1px solid var(--ln)}.wi:nth-child(2n){border-right:0}.wi:nth-child(n+4){border-bottom:1px solid var(--ln)}.wi:nth-child(n+5){border-bottom:0}
+.tl{grid-template-columns:1fr;gap:28px;padding-left:34px}.tl::before,.tl::after{top:0;bottom:0;left:7px;width:1px;height:auto;right:auto}.tl::after{height:var(--p,0%);width:1px}
+.st{padding:0}.st::before{left:-34px;top:6px}section{padding:84px 0}}
+@media(max-width:620px){
+.sg,.pg,.wg,.r2{grid-template-columns:1fr}.pj:nth-child(3n+1){grid-column:auto}.pv,.pj:nth-child(3n+1) .pv{height:240px}
+.wi,.wi:nth-child(n){border-right:0;border-bottom:1px solid var(--ln)}.wi:last-child{border-bottom:0}
+.stats{gap:24px}form{padding:24px}.w1{width:260px}.w2{width:200px}.pb{flex-direction:column;align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<header id="hd" class="hd"><div class="wrap nav">
+<a href="#top" class="logo"><i></i>WEB CRAFT</a>
+<nav class="links"><a href="#services">Услуги</a><a href="#work">Работы</a><a href="#why">Преимущества</a><a href="#process">Процесс</a><a href="#contact">Контакты</a><a href="https://t.me/Sayd1n169" target="_blank" rel="noopener" style="color:var(--tx)">@Sayd1n169</a></nav>
+<a href="#contact" class="btn">Обсудить проект</a>
+<button class="burger" id="bg" aria-label="Меню"><span></span><span></span></button>
+</div></header>
+<div class="mob" id="mob"><a href="#services">Услуги</a><a href="#work">Работы</a><a href="#why">Преимущества</a><a href="#process">Процесс</a><a href="#contact">Заявка</a><a href="https://t.me/Sayd1n169" target="_blank" rel="noopener" class="grad">Telegram @Sayd1n169</a></div>
+
+<main id="top">
+<section class="hero"><div class="orb o1"></div><div class="orb o2"></div><div class="grid"></div>
+<div class="wrap hg">
+<div>
+<span class="eyebrow rv">Веб-студия · дизайн и разработка</span>
+<h1 class="rv" style="--d:.1s">Создаём сайты, которые <span class="grad">выделяют ваш бизнес</span></h1>
+<p class="rv" style="--d:.2s">Разрабатываем современные цифровые продукты с премиальным дизайном, продуманной функциональностью и вниманием к каждой детали.</p>
+<div class="cta rv" style="--d:.3s"><a href="#contact" class="btn p">Обсудить проект →</a><a href="#work" class="btn">Смотреть работы</a></div>
+<div class="stats rv" style="--d:.4s"><div><b>6</b>направлений</div><div><b>100%</b>адаптив</div><div><b>3–14</b>дней на запуск</div></div>
+</div>
+<div class="scene rv" style="--d:.3s"><div class="stage" id="stage">
+<div class="ring"></div><div class="cube"></div>
+<div class="win w1"><div class="d"><i></i><i></i><i></i></div><div class="hb"></div><div class="bar" style="width:70%"></div><div class="bar" style="width:90%"></div><div class="bar" style="width:50%"></div></div>
+<div class="win w2"><div class="d"><i></i><i></i><i></i></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div class="hb" style="height:56px;margin:0"></div><div class="hb" style="height:56px;margin:0;opacity:.4"></div></div><div class="bar" style="width:80%;margin-top:14px"></div><div class="bar" style="width:55%"></div></div>
+<div class="win w3"><div class="d"><i></i><i></i><i></i></div><div class="bar" style="width:40%;background:var(--ac)"></div><div class="bar"></div><div class="bar" style="width:75%"></div></div>
+</div></div>
+</div></section>
+
+<section id="services"><div class="wrap">
+<span class="eyebrow rv">01 / Услуги</span><h2 class="rv">Всё для сильного<br><span class="grad">цифрового присутствия</span></h2>
+<div class="sg">
+<div class="card rv"><span class="num">01</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div><h3>Разработка сайтов</h3><p>Чистый код, быстрая загрузка и архитектура, которая спокойно растёт вместе с вашим проектом.</p></div>
+<div class="card rv" style="--d:.08s"><span class="num">02</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 10h16M10 10v10"/></svg></div><h3>Лендинги</h3><p>Одностраничники, выстроенные вокруг одной цели: заявка, звонок или покупка.</p></div>
+<div class="card rv" style="--d:.16s"><span class="num">03</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg></div><h3>Корпоративные сайты</h3><p>Многостраничные ресурсы, которые передают масштаб и надёжность компании.</p></div>
+<div class="card rv"><span class="num">04</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h11L21 7H6M9 20a1 1 0 100-.01M17 20a1 1 0 100-.01"/></svg></div><h3>Интернет-магазины</h3><p>Каталог, корзина и оплата без лишних шагов. Удобно покупателю и просто в управлении.</p></div>
+<div class="card rv" style="--d:.08s"><span class="num">05</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-3-6.2M20 4v4h-4"/></svg></div><h3>Редизайн сайтов</h3><p>Обновим устаревший сайт: сохраним лучшее и добавим современный вид.</p></div>
+<div class="card rv" style="--d:.16s"><span class="num">06</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg></div><h3>UI/UX-дизайн</h3><p>Интерфейсы с понятной логикой, сильной типографикой и вниманием к деталям.</p></div>
+</div></div></section>
+
+<section id="work"><div class="wrap">
+<span class="eyebrow rv">02 / Портфолио</span><h2 class="rv">Концепты <span class="grad">нашего стиля</span></h2>
+<div class="pg">
+<article class="pj rv"><div class="pv" style="background:radial-gradient(circle at 30% 20%,#2a3bff55,transparent 60%),#0b0d14"><div class="win"><div class="d"><i></i><i></i><i></i></div><div class="hb" style="height:90px"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div class="hb" style="height:50px;opacity:.35"></div><div class="hb" style="height:50px;opacity:.35"></div><div class="hb" style="height:50px;opacity:.35"></div></div></div></div><div class="pb"><div><span class="tag">Корпоративный сайт</span><h3>Northline — логистика</h3><p>Демо-концепт: сайт транспортной компании с трекингом и расчётом доставки.</p></div><a class="btn" href="#contact">Хочу так же</a></div></article>
+<article class="pj rv" style="--d:.1s"><div class="pv" style="background:radial-gradient(circle at 70% 30%,#a45bff55,transparent 60%),#0b0d14"><div class="win"><div class="d"><i></i><i></i><i></i></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"><div class="hb" style="height:80px;background:linear-gradient(120deg,#a45bff,#ff5bb0)"></div><div class="hb" style="height:80px;opacity:.3"></div></div><div class="bar" style="width:60%;margin-top:12px"></div></div></div><div class="pb"><div><span class="tag">Интернет-магазин</span><h3>Aurum — украшения</h3><p>Демо-концепт витрины с крупными фото и быстрым оформлением заказа.</p></div><a class="btn" href="#contact">Хочу так же</a></div></article>
+<article class="pj rv" style="--d:.2s"><div class="pv" style="background:radial-gradient(circle at 50% 80%,#38d6ff44,transparent 60%),#0b0d14"><div class="win"><div class="d"><i></i><i></i><i></i></div><div class="hb" style="height:60px;background:linear-gradient(120deg,#38d6ff,#5b6cff)"></div><div class="bar" style="width:85%"></div><div class="bar" style="width:45%"></div></div></div><div class="pb"><div><span class="tag">Лендинг</span><h3>Pulse — фитнес-приложение</h3><p>Демо-концепт посадочной страницы с акцентом на скачивания.</p></div><a class="btn" href="#contact">Хочу так же</a></div></article>
+</div>
+<p class="note rv">Это демонстрационные концепты, а не выполненные клиентские заказы. Реальные кейсы появятся здесь по мере запуска проектов.</p>
+</div></section>
+
+<section id="why"><div class="wrap">
+<span class="eyebrow rv">03 / Преимущества</span><h2 class="rv">Почему выбирают <span class="grad">WEB CRAFT</span></h2>
+<div class="wg rv">
+<div class="wi"><b>01</b><h3>Индивидуальный подход</h3><p>Никаких шаблонов: решение строится под вашу задачу и аудиторию.</p></div>
+<div class="wi"><b>02</b><h3>Современный дизайн</h3><p>Актуальные тренды, сильная типографика и воздух в композиции.</p></div>
+<div class="wi"><b>03</b><h3>Адаптация под все устройства</h3><p>Одинаково безупречно на смартфоне, планшете и большом мониторе.</p></div>
+<div class="wi"><b>04</b><h3>Быстрая загрузка</h3><p>Лёгкая графика и оптимизированный код, чтобы сайт открывался мгновенно.</p></div>
+<div class="wi"><b>05</b><h3>Чистый и качественный код</h3><p>Понятная структура, которую легко поддерживать и развивать.</p></div>
+<div class="wi"><b>06</b><h3>Поддержка после запуска</h3><p>Остаёмся на связи: правки, обновления и помощь с развитием.</p></div>
+</div></div></section>
+
+<section id="process"><div class="wrap">
+<span class="eyebrow rv">04 / Этапы работы</span><h2 class="rv">От идеи <span class="grad">до запуска</span></h2>
+<div class="tl" id="tl">
+<div class="st rv"><b>01</b><h3>Обсуждение идеи</h3></div>
+<div class="st rv" style="--d:.1s"><b>02</b><h3>Разработка концепции</h3></div>
+<div class="st rv" style="--d:.2s"><b>03</b><h3>Дизайн интерфейса</h3></div>
+<div class="st rv" style="--d:.3s"><b>04</b><h3>Программирование</h3></div>
+<div class="st rv" style="--d:.4s"><b>05</b><h3>Тестирование</h3></div>
+<div class="st rv" style="--d:.5s"><b>06</b><h3>Запуск проекта</h3></div>
+</div></div></section>
+
+<section id="contact"><div class="wrap fw">
+<div><span class="eyebrow rv">05 / Заявка</span><h2 class="rv">Расскажите<br>о <span class="grad">вашем проекте</span></h2><p class="lead rv">Заполните форму: заявка придёт нам, а ответ вы получите в выбранном мессенджере. Или напишите напрямую в Telegram.</p><p class="rv"><a class="btn" style="margin-top:26px" href="https://t.me/Sayd1n169" target="_blank" rel="noopener">Заказать в Telegram · @Sayd1n169</a></p></div>
+<form id="f" class="rv" novalidate>
+<div class="r2"><label>Имя<input name="name" required maxlength="60" placeholder="Как к вам обращаться"></label><label>Контакт для связи<input name="contact" required maxlength="80" placeholder="@telegram или телефон"></label></div>
+<div class="r2"><label>Тип сайта<select name="type"><option>Лендинг</option><option>Корпоративный сайт</option><option>Интернет-магазин</option><option>Редизайн</option><option>UI/UX-дизайн</option><option>Другое</option></select></label>
+<label>Примерный бюджет<select name="budget"><option>до 20 000 ₽</option><option>20 000 – 60 000 ₽</option><option>60 000 – 150 000 ₽</option><option>от 150 000 ₽</option><option>Пока не знаю</option></select></label></div>
+<label>Описание проекта<textarea name="msg" maxlength="1000" placeholder="Задачи, примеры сайтов, пожелания"></textarea></label>
+<div class="err" id="err"></div>
+<button class="btn p" type="submit" style="justify-content:center"><span class="sp"></span><span id="bt">Отправить заявку</span></button>
+<div class="ok" id="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><h3>Заявка готова</h3><p style="color:var(--mut);margin:0" id="okt">Мы свяжемся с вами в ближайшее время.</p><a class="btn p" id="tg" target="_blank" rel="noopener" style="justify-self:center">Отправить в Telegram</a></div>
+</form></div></section>
+</main>
+
+<footer><div class="wrap"><div class="fr"><a href="#top" class="logo"><i></i>WEB CRAFT</a><div style="display:flex;gap:28px"><a href="#services">Услуги</a><a href="#work">Работы</a><a href="#contact">Контакты</a><a href="https://t.me/Sayd1n169" target="_blank" rel="noopener">Telegram: @Sayd1n169</a></div></div>
+<div class="big">WEB CRAFT</div><div class="fr"><span>© 2026 WEB CRAFT. Все права защищены.</span><a href="#top">Наверх ↑</a></div></div></footer>
+<a class="fl" href="https://t.me/Sayd1n169" target="_blank" rel="noopener" aria-label="Связаться в Telegram"><svg viewBox="0 0 24 24"><path d="M21.5 3.5L2.8 10.7c-.9.4-.9 1.2-.2 1.4l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.600c.3-1.200-.5-1.800-1.500-1.400zM8.500 13.200l9.400-5.900c.4-.3.800-.1.500.2l-7.800 7-.3 3.200z"/></svg></a>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var hd=$("#hd"),bg=$("#bg"),mob=$("#mob");
+addEventListener("scroll",function(){hd.classList.toggle("s",scrollY>20)},{passive:true});
+function tog(o){bg.classList.toggle("o",o);mob.classList.toggle("o",o);document.body.style.overflow=o?"hidden":""}
+bg.onclick=function(){tog(!mob.classList.contains("o"))};
+mob.querySelectorAll("a").forEach(function(a){a.onclick=function(){tog(false)}});
+/* reveal + timeline */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("v");io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll(".rv").forEach(function(el){io.observe(el)});
+var tl=$("#tl");new IntersectionObserver(function(es,o){if(es[0].isIntersecting){tl.style.setProperty("--p","100%");o.disconnect()}},{threshold:.3}).observe(tl);
+/* card glow */
+document.querySelectorAll(".card").forEach(function(c){c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")})});
+/* cursor + 3D tilt */
+var cur=$("#cur"),st=$("#stage");
+if(matchMedia("(hover:hover) and (pointer:fine)").matches){
+addEventListener("pointermove",function(e){cur.style.transform="translate("+e.clientX+"px,"+e.clientY+"px)";cur.classList.toggle("h",!!e.target.closest("a,button,.card,.pj"));
+if(st){var x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);st.style.transform="rotateY("+x*12+"deg) rotateX("+(-y*10)+"deg)"}},{passive:true});}
+/* form */
+var f=$("#f"),err=$("#err");
+f.addEventListener("submit",async function(ev){
+ev.preventDefault();err.textContent="";
+var d=Object.fromEntries(new FormData(f).entries());
+if(!d.name.trim()||!d.contact.trim()){err.textContent="Укажите имя и контакт для связи.";return}
+f.classList.add("l");$("#bt").textContent="Отправляем…";
+var txt="Заявка WEB CRAFT\nИмя: "+d.name+"\nКонтакт: "+d.contact+"\nТип: "+d.type+"\nБюджет: "+d.budget+"\nОписание: "+(d.msg||"—");
+var saved=false;
+await new Promise(function(r){setTimeout(r,700)});
+f.classList.remove("l");$("#bt").textContent="Отправить заявку";
+$("#tg").href="https://t.me/Sayd1n169?text="+encodeURIComponent(txt);
+$("#okt").textContent="Остался один шаг: нажмите кнопку, и заявка с уже заполненным текстом уйдёт нам в Telegram.";window.open($("#tg").href,"_blank","noopener");
+$("#ok").classList.add("s");f.reset()});
+})();
+</script>
+</body>
+</html>
